@@ -45,13 +45,12 @@ public class UserResource {
                               @QueryParam("email") Optional<String> email) {
 
         List<User> result = new ArrayList<>();
+        if(name.isEmpty() && surname.isEmpty() && email.isEmpty()) {
+            result.addAll(repository.getAll());
+        }
         name.ifPresent( n -> result.addAll(repository.findAllByName(n)));
         surname.ifPresent( s -> result.addAll(repository.findAllBySurname(s)));
         email.ifPresent( e -> result.addAll(repository.findAllByEmail(e)));
-
-        if(result.isEmpty()) {
-            result.addAll(repository.getAll());
-        }
 
         return Response.ok().entity(result).build();
     }

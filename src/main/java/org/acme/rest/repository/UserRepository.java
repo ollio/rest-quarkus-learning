@@ -43,14 +43,14 @@ public class UserRepository {
     }
 
     public Collection<? extends User> findAllByName(String name) {
-        return users.values().stream().filter(u -> u.getName().equals(name)).collect(Collectors.toList());
+        return users.values().stream().filter(u -> name.equals(u.getName())).collect(Collectors.toList());
     }
 
     public Collection<? extends User> findAllByEmail(String email) {
-        return users.values().stream().filter(u -> u.getEmail().equals(email)).collect(Collectors.toList());
+        return users.values().stream().filter(u -> email.equals(u.getEmail())).collect(Collectors.toList());
     }
 
     public Collection<? extends User> findAllBySurname(String surname) {
-        return users.values().stream().filter(u -> u.getSurname().equals(surname)).collect(Collectors.toList());
+        return users.values().stream().filter(u -> surname.equals(u.getSurname())).collect(Collectors.toList());
     }
 }
